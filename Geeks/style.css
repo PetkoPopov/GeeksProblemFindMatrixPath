@@ -32,7 +32,8 @@ button {
     background-color: aquamarine;
     border-radius: 15%;
     box-shadow: 3px 2px blue;
-    box-sizing: inherit;
+    width:100px;
+    height: 66px;
 }
 
 div button {
