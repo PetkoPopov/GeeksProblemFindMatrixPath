@@ -1,0 +1,27 @@
+td {
+    background-color: aquamarine;
+    /* border-block: solid black 2px; */
+    border: solid olive 2px;
+    width: 40px;
+    height: 40px;
+}
+
+div {
+    text-align: center;
+}
+
+body {
+    background-color: darkgreen;
+}
+
+input {
+    height: 20px;
+    width: 60px;
+}
+
+.center {
+    text-align: center;
+}
+#content{
+    text-align: center;
+}
