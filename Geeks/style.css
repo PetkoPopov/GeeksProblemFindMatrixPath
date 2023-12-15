@@ -17,11 +17,24 @@ body {
 input {
     height: 20px;
     width: 60px;
+    border-radius: 15%;
 }
 
 .center {
     text-align: center;
 }
-#content{
+
+#content {
     text-align: center;
+}
+
+button {
+    background-color: aquamarine;
+    border-radius: 15%;
+    box-shadow: 3px 2px blue;
+    box-sizing: inherit;
+}
+
+div button {
+    display: inline;
 }

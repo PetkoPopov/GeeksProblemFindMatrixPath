@@ -4,6 +4,7 @@ export default class Table {
         this.globalArr = []
         this.endAlg;
         this.result = []
+        this.matrix = []
         let div = document.getElementById('content')
         let table = document.getElementById('for-remove')
         if (table) { div.removeChild(table) }
@@ -13,6 +14,8 @@ export default class Table {
         this.row = Number(num_1)
         this.col = Number(num_2)
         this.matrixSixe = this.row * this.col - 1
+        this.pathMaxSum={}
+        this.pathMinSum={}
 
     }
 
@@ -22,26 +25,34 @@ export default class Table {
         table.setAttribute('id', 'for-remove')
         for (let index = 0; index < num_1; index++) {
             let tr = document.createElement('tr')
+            let rowArr = []
             for (let y = 0; y < num_2; y++) {
                 let td = document.createElement('td')
                 let tdNum = 0
+                rowArr.push(0)
                 td.innerHTML = index * num_2 + y
                 td.addEventListener("click", () => {
                     tdNum += 1
                     tdNum = tdNum % 10
                     td.innerHTML = tdNum
+                    rowArr.splice(y, 1, tdNum)
                 })
                 td.addEventListener('mouseover', () => {
                     td.innerHTML = index * num_2 + y
                 })
                 td.addEventListener('mouseleave', () => {
                     td.innerHTML = tdNum
+                    // console.log(this.matrix);
                 })
+
                 tr.appendChild(td)
             }
+            this.matrix.push(rowArr)
+            // console.log(this.matrix);
             table.appendChild(tr)
         }
         div.appendChild(table)
+        console.log(this.matrix);
     }
     /**
      * 

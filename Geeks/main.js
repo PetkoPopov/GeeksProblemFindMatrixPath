@@ -1,6 +1,8 @@
 import Table from './makeTable.js'
+import showValue from './showValue.js'
+
 const btn = document.getElementById('btn')
-btn.addEventListener('click',()=>{whenClicked()})
+btn.addEventListener('click', () => { whenClicked() })
 
 function whenClicked() {
     let matrix = new Table()
@@ -13,7 +15,8 @@ function whenClicked() {
             matrix.result.push(e)
         })
     }
-    console.log(matrix.result);
+    // console.log(matrix.result);
+    showValue(matrix)
+    
 }
-
 
