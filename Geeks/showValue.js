@@ -1,4 +1,5 @@
 import calcSum from "./calcSum.js"
+import changeColor from "./changeColor.js"
 export default function showValue(table) {
     let btnShowValue = document.getElementById('showValue')
     let tdCollection = document.getElementsByTagName('td')
@@ -13,7 +14,8 @@ export default function showValue(table) {
             }
         }
         calcSum(table)
-        console.log(table.pathMinSum , table.pathMaxSum);
+        changeColor(table)
+        console.log(table.pathMinSum, table.pathMaxSum);
     })
 
 }
