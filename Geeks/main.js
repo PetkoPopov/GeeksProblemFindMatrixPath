@@ -2,8 +2,8 @@ class Table {
 
     constructor() {
         this.globalArr = []
-        this.globalArr.push([0])
         this.endAlg;
+        this.result = []
         let div = document.getElementById('content')
         let table = document.getElementById('for-remove')
         if (table) { div.removeChild(table) }
@@ -34,6 +34,7 @@ class Table {
      * 
      * @param {*} arr [ 1,2,3, ...] 
      * @returns [ [ 1,2,3,5 ],[1,2,3,10 ],[1,2,3,1 ] ]
+     * @else else bool 
      */
     calcNextArr(arr) {
         // console.log(this.globalArr)
@@ -42,7 +43,7 @@ class Table {
         let num1;
         if ((num + 1) % this.col != 0) {
             num1 = num + 1
-        } else if((num+1)%this.col == 0){
+        } else if ((num + 1) % this.col == 0) {
             return false
         }
 
@@ -84,35 +85,44 @@ class Table {
         //foreach(calkNext();this.globalArr(push))
         //[0,1]=>[0,1,2],[0,1,8]
         //[0,7]=>[0,7,2],[0,7,8],[0,7,14]
+        // console.log(this.globalArr);return
+
         let globalArrCurrent = []
-        this.globalArr = [[1, 11], [7, 17], [76, 87, 28],[33],[3]]
         if (this.calcNextArr(this.globalArr[0])) {
             this.globalArr.forEach(e => {
                 globalArrCurrent.push(e)
             })
             this.globalArr = []
-            console.log(`get thisGlobal empty ${this.globalArr}`);
-            let newArr = null
-            globalArrCurrent.forEach(e => {
-                newArr = this.calcNextArr(e)
-                this.globalArr.push(newArr)
-            })
 
-            console.log('new this.globalArr', this.globalArr);
-        }else{
-            this.endAlg=true
-            console.log(this.globalArr);
+            globalArrCurrent.forEach(e => {
+                let newArr = this.calcNextArr(e)
+                //[ [],[],[],[] ]
+                newArr.forEach(singleArr => {
+                    this.globalArr.push(singleArr)
+                })
+            })
+        } else {
+            console.log('end algoritme !');
+            this.endAlg = true
+
         }
+
     }//end method 
 
 }//end Class
 
 let whenClicked = () => {
     let matrix = new Table()
-    matrix.algoritam()
-    // console.log(matrix.calcNextArr([76, 87, 28]));
-
-
+    for (let y = 0; y < matrix.row; y++) {
+        matrix.globalArr = [[y * matrix.col]]
+        for (let i = 0; i < matrix.col; i++) {
+            matrix.algoritam()
+        }
+        matrix.globalArr.forEach(e => {
+            matrix.result.push(e)
+        })
+    }
+    console.log(matrix.result);
 }
 
 
