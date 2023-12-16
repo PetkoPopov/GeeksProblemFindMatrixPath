@@ -39,3 +39,6 @@ button {
 div button {
     display: inline;
 }
+h1{
+    position: sticky
+}
