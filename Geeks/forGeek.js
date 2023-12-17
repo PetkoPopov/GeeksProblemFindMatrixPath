@@ -1,7 +1,8 @@
 class Solution {
-    findMaxSum(arr, n, m) {
-
-
+    findMaxSum(M, row, col) {
+        let arr = M
+        let n = row
+        let m = col
         let allPats = []
         let pathsArrCurrent = []
 
@@ -50,13 +51,13 @@ class Solution {
             }//end for 
             pathsArr.forEach(e => { allPats.push(e) })
         }
-        console.log(allPats.length);
-        let sumTotal=0
-        let sumPath=[] 
+
+        let sumTotal = 0
+        let sumPath = []
         let sumMax = { sum: 0, path: [] }
         allPats.forEach(e => {
-            sumTotal=0
-            sumPath=[]
+            sumTotal = 0
+            sumPath = []
             e.forEach(nPath => {
                 let a, b;
                 a = nPath % m//col
@@ -67,19 +68,19 @@ class Solution {
             if (sumTotal >= sumMax.sum) {
                 sumMax.sum = sumTotal
                 sumMax.path = sumPath
-                
+
             }
         })
-
+        console.log(sumMax)
+        return sumMax.sum
         console.log(sumMax);
     }//end method
 }
 let solution = new Solution()
 arr = [
-    [1, 2, 2, 3, 4],
-    [1, 2, 2, 3, 5],
-    [1, 3, 3, 3, 4],
-    [1, 2, 3, 4, 5],
-    [7, 6, 5, 4, 3]
+    [1, 3, 1, 5],
+    [2, 2, 4, 1],
+    [5, 0, 2, 3],
+    [0, 6, 1, 2]
 ]
-solution.findMaxSum(arr, 4, 5)
+solution.findMaxSum(arr, 4, 4)
