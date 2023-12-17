@@ -15,7 +15,7 @@ export default function showValue(table) {
         }
         calcSum(table)
         changeColor(table)
-        console.log(table.pathMinSum, table.pathMaxSum);
+        console.log(table.pathMinSum, table.pathMaxSum,table.result.length);
     })
 
 }
