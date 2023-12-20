@@ -1,39 +1,46 @@
 class Solution {
     minJumps(arr, n) {
-        let arrPaths = [[0]]
-        if (arr[0] == 0) return -1
-        for (let r = 0; r < n; r++) {
-            let hlpArr = []
 
-            for (let i = 0; i < arrPaths.length; i++) {
-                let e = []
-                arrPaths[i].forEach(element => { e.push(element) })
-                let lastOfEl = e[e.length - 1]
-                let lastOfArr = arr[lastOfEl]
-                if (lastOfEl + lastOfArr >= n) {
-                    console.log(`steps nomer ${r} !`);
-                    return [r, e]
-                } else {
-                    //make last of arr arrays
+        if (arr[0] == 0) {
 
-                    for (let y = 0; y < lastOfArr; y++) {
-                        // [3,4,5,6,7,8,76,5,9] 
-
-                        e.push(lastOfEl + y + 1)
-                        let hlp = []
-                        e.forEach(g => {
-                            hlp.push(g)
-                        })
-                        hlpArr.push(hlp)
-                        e.pop()
-                    }//end second for
-                }//end if
-            } //end for  
-            arrPaths = hlpArr
-
+            return -1
+        }else if (arr[0] >= n){
+            return 1
+        } else if(arr.length == 1 ) {
+         return 0 
         }
-        return arrPaths
+        let index = 0
+        let indexcurrent = 0
+        let minStep = 0
+        for (let step = 1; step < n; step++) {
+            // indexcurrent = 0
+            let first = arr[index]
+            if (first + index >= n) {
+                minStep = step;
+                return minStep
+            }
+            let stepMax = 0
+
+            for (let y = 1; y <= first; y++) {
+                let hlp = 0
+                if (index+y < n) { hlp = index + y + arr[index + y] }
+                else { return step }
+                if (stepMax <= hlp) {
+                    stepMax = hlp; indexcurrent = index + y
+                }
+            }
+            index = indexcurrent
+        }
+
     }//end method 
 }//end class
 let s = new Solution()
-console.log(s.minJumps([1, 3, 1, 8, 1, 2, 1, 7, 1, 8, 9, 1, 3, 4, 3, 2, 1, 3], 18))
+console.log(s.minJumps([
+    10 ,14 ,29 ,21 ,17, 4 ,18 ,20 ,18, 22,
+     21 ,14 ,27 ,12, 3 , 28 ,17, 0, 2, 18,
+      8 ,20 ,26 ,16 ,9 ,23 ,25 ,20 ,7 ,27 ,
+      5 ,7 ,16, 5 ,25 ,11 ,3 ,7 ,2 ,17 ,14 ,
+      6 ,12 , 14 ,23 ,25 ,26 ,5, 18, 1, 6 ,
+      10 ,9 ,12, 2, 25 ,29 ,12 ,19, 4, 8, 5,
+      8, 30, 2, 22, 24, 30, 7, 24,8 ,15 ,16,
+       2, 11 ,20],76))
